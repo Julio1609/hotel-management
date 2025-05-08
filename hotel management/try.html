@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Cards</title>
+    <style>
+        .popular_container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .popular_card {
+            width: 250px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .popular_card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .popular_card_header {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="popular_container" id="popularContainer">
+        <!-- Cards will be inserted here dynamically -->
+    </div>
+
+    <script>
+        // Array of image data
+        const places = [
+            {
+                image: "Pics/Rossendale Holiday Cottages & Spa.webp",
+                title: "Rossendale Holiday",
+                price: "£499.00",
+                location: "Manchester, United Kingdom"
+            },
+            {
+                image: "Pics/London_Hotel.webp",
+                title: "London Hotel",
+                price: "£599.00",
+                location: "London, United Kingdom"
+            },
+            {
+                image: "Pics/Edinburgh_Resort.webp",
+                title: "Edinburgh Resort",
+                price: "£699.00",
+                location: "Edinburgh, Scotland"
+            }
+        ];
+
+        // Select the container
+        const container = document.getElementById("popularContainer");
+
+        // Loop through each place and create the card
+        places.forEach(place => {
+            // Create card element
+            const card = document.createElement("div");
+            card.classList.add("popular_card");
+
+            // Set inner HTML
+            card.innerHTML = `
+                <img src="${place.image}" alt="${place.title}">
+                <div class="popular_content">
+                    <div class="popular_card_header">
+                        <h4>${place.title}</h4>
+                        <h4>${place.price}</h4>
+                    </div>
+                    <p>${place.location}</p>
+                </div>
+            `;
+
+            // Append to container
+            container.appendChild(card);
+        });
+    </script>
+
+</body>
+</html>
